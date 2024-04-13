@@ -1,15 +1,14 @@
 /**
  * Typed EventTarget
  *
- * Re-exports the `EventTarget` class with updated types to enable specifying
+ * Re-exports the EventTarget class with updated types to enable specifying
  * the events it emits.
  *
- * Be aware these types are not enforced at runtime so this is not type safe.
+ * Be aware these types are not enforced at runtime.
  *
  * @example
  * ```ts
  * const target = new TypedEventTarget<{ message: MessageEvent<string> }>();
- * const target = new Example();
  * target.addEventListener('message', (event) => {
  *   event.data satisfies string
  * })
@@ -79,17 +78,26 @@ export interface TypedEventTarget<Events extends Record<string, Event>>
   ): void;
 }
 
-/** @see {globalThis.EventListenerOrEventListenerObject} */
+/**
+ * Generic EventListenerOrEventListenerObject
+ * @see {globalThis.EventListenerOrEventListenerObject}
+ */
 type EventListenerOrEventListenerObject<E extends Event> =
   | EventListener<E>
   | EventListenerObject<E>;
 
-/** @see {globalThis.EventListener} */
+/**
+ * Generic EventListener
+ * @see {globalThis.EventListener}
+ */
 interface EventListener<E extends Event> {
   (evt: E): void | Promise<void>;
 }
 
-/** @see {globalThis.EventListenerObject} */
+/**
+ * Generic EventListenerObject
+ * @see {globalThis.EventListenerObject}
+ */
 interface EventListenerObject<E extends Event> {
   handleEvent(evt: E): void | Promise<void>;
 }

@@ -1,0 +1,5 @@
+{
+  "name": "@garretmh/typed-event-target",
+  "version": "0.0.1",
+  "exports": "./TypedEventTarget.ts"
+}

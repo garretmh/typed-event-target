@@ -35,6 +35,11 @@
 export const TypedEventTarget: {
   new <T extends Record<string, Event>>(): TypedEventTarget<T>;
 } = EventTarget as any;
+
+/**
+ * EventTarget with updated types to enable specifying the events it emits.
+ * @extends EventTarget
+ */
 export interface TypedEventTarget<Events extends Record<string, Event>>
   extends EventTarget {
   /** Appends an event listener for events whose type attribute value is type.
@@ -78,26 +83,17 @@ export interface TypedEventTarget<Events extends Record<string, Event>>
   ): void;
 }
 
-/**
- * Generic EventListenerOrEventListenerObject
- * @see {globalThis.EventListenerOrEventListenerObject}
- */
+/** @see {globalThis.EventListenerOrEventListenerObject} */
 type EventListenerOrEventListenerObject<E extends Event> =
   | EventListener<E>
   | EventListenerObject<E>;
 
-/**
- * Generic EventListener
- * @see {globalThis.EventListener}
- */
+/** @see {globalThis.EventListener} */
 interface EventListener<E extends Event> {
   (evt: E): void | Promise<void>;
 }
 
-/**
- * Generic EventListenerObject
- * @see {globalThis.EventListenerObject}
- */
+/** @see {globalThis.EventListenerObject} */
 interface EventListenerObject<E extends Event> {
   handleEvent(evt: E): void | Promise<void>;
 }

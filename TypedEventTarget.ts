@@ -79,14 +79,17 @@ export interface TypedEventTarget<Events extends Record<string, Event>>
   ): void;
 }
 
+/** @see {globalThis.EventListenerOrEventListenerObject} */
 type EventListenerOrEventListenerObject<E extends Event> =
   | EventListener<E>
   | EventListenerObject<E>;
 
+/** @see {globalThis.EventListener} */
 interface EventListener<E extends Event> {
   (evt: E): void | Promise<void>;
 }
 
+/** @see {globalThis.EventListenerObject} */
 interface EventListenerObject<E extends Event> {
   handleEvent(evt: E): void | Promise<void>;
 }
